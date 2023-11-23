@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1324e32",
+    "title": "Telekom Internet",
+    "value": 2761,
+    "created": "2023-11-23T14:05:41.540Z",
+    "category": "Wohnung"
+  },
+  {
+    "id": "329weow",
+    "title": "Adobe Lightroom",
+    "value": 1189,
+    "created": "2023-11-22T14:05:41.540Z",
+    "category": "Freizeit"
+  },
+  {
+    "id": "fhfr2qw",
+    "title": "Parkhaus Coburg",
+    "value": 1620,
+    "created": "2023-11-22T14:01:41.540Z",
+    "category": "Freizeit"
+  }
+]
