@@ -6,6 +6,7 @@ import { filterExpenses, formatCurrency, formatDate, groupExpenses } from "@/lib
 import Button from "@/components/button";
 import Checkbox from "@/components/checkbox";
 import type { Expense } from "@/types";
+import Badge from "./badge";
 
 type Props = {
   title?: string;
@@ -71,6 +72,9 @@ export default function Table({ expenses, title, children }: Props) {
               Value
             </th>
             <th scope="col" className="border-b border-gray-300 py-2 px-4 text-left text-gray-900 font-semibold">
+              Type
+            </th>
+            <th scope="col" className="border-b border-gray-300 py-2 px-4 text-left text-gray-900 font-semibold">
               Category
             </th>
             <th scope="col" className="border-b border-gray-300 py-2 px-4" />
@@ -80,14 +84,17 @@ export default function Table({ expenses, title, children }: Props) {
           {Array.from(groupExpenses(filterExpenses(expenses, filter))).map(([date, expenses]) => (
             <Fragment key={date}>
               <tr>
-                <td colSpan={6} className="bg-gray-50 border-b border-gray-300 py-3 px-16 text-gray-900 font-semibold">
+                <td colSpan={7} className="bg-gray-50 border-b border-gray-300 py-3 px-16 text-gray-900 font-semibold">
                   {formatDate(date)}
                 </td>
               </tr>
               {expenses.map((expense) => (
                 <tr
                   key={expense.id}
-                  className={clsx({ "bg-gray-50 border-l-2 border-l-indigo-600": selected.includes(expense.id) })}
+                  className={clsx("border-l-2", {
+                    "bg-gray-50 border-l-indigo-600": selected.includes(expense.id),
+                    "border-l-transparent": !selected.includes(expense.id),
+                  })}
                 >
                   <td className="border-b border-gray-200 py-2 px-4">
                     <Checkbox
@@ -97,7 +104,12 @@ export default function Table({ expenses, title, children }: Props) {
                   </td>
                   <td className="border-b border-gray-200 py-2 px-4 font-medium text-gray-900">{expense.title}</td>
                   <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{formatDate(expense.created)}</td>
-                  <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{formatCurrency(expense.value)}</td>
+                  <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{formatCurrency(expense.value)} </td>
+                  <td className="border-b border-gray-200 py-2 px-4">
+                    <Badge type={expense.value < 0 ? "expense" : "income"}>
+                      {expense.value < 0 ? "Expense" : "Income"}
+                    </Badge>
+                  </td>
                   <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{expense.category}</td>
                   <td className="border-b border-gray-200 py-2 px-4 text-gray-500">
                     <Button variant="secondary" className="mr-2">
