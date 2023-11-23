@@ -1,9 +1,10 @@
 "use client";
 
-import { formatCurrency, formatDate, groupExpensesByDate } from "@/lib/utils";
-import type { Expense } from "@/types";
-import Button from "@/components/button";
 import { Fragment } from "react";
+import { formatCurrency, formatDate, groupExpensesByDate } from "@/lib/utils";
+import Button from "@/components/button";
+import Checkbox from "@/components/checkbox";
+import type { Expense } from "@/types";
 
 type Props = {
   expenses: Expense[];
@@ -15,7 +16,7 @@ export default function Table({ expenses }: Props) {
       <thead>
         <tr>
           <th scope="col" className="border-b border-gray-300 p-2 text-left text-gray-900 font-semibold w-8">
-            <input type="checkbox" />
+            <Checkbox indeterminate />
           </th>
           <th scope="col" className="border-b border-gray-300 p-2 text-left text-gray-900 font-semibold">
             Title
@@ -36,20 +37,20 @@ export default function Table({ expenses }: Props) {
         {Array.from(groupExpensesByDate(expenses)).map(([date, expenses]) => (
           <Fragment key={date}>
             <tr>
-              <td colSpan={6} className="bg-gray-50 border-b border-gray-300 py-2 px-10 font-semibold text-gray-900">
+              <td colSpan={6} className="bg-gray-50 border-b border-gray-300 py-2 px-10 text-gray-900 font-semibold">
                 {formatDate(date)}
               </td>
             </tr>
             {expenses.map((expense) => (
               <tr key={expense.id}>
                 <td className="border-b border-gray-200 p-2">
-                  <input type="checkbox" />
+                  <Checkbox />
                 </td>
-                <td className="border-b border-gray-200 p-2 font-medium">{expense.title}</td>
-                <td className="border-b border-gray-200 p-2">{formatDate(expense.created)}</td>
-                <td className="border-b border-gray-200 p-2">{formatCurrency(expense.value)}</td>
-                <td className="border-b border-gray-200 p-2">{expense.category}</td>
-                <td className="border-b border-gray-200 p-2">
+                <td className="border-b border-gray-200 p-2 font-medium text-gray-900">{expense.title}</td>
+                <td className="border-b border-gray-200 p-2 text-gray-500">{formatDate(expense.created)}</td>
+                <td className="border-b border-gray-200 p-2 text-gray-500">{formatCurrency(expense.value)}</td>
+                <td className="border-b border-gray-200 p-2 text-gray-500">{expense.category}</td>
+                <td className="border-b border-gray-200 p-2 text-gray-500">
                   <Button variant="secondary" className="mr-2">
                     Edit
                   </Button>

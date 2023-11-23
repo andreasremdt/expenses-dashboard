@@ -1,7 +1,7 @@
-import { type ComponentPropsWithRef, type Ref, forwardRef } from "react";
+import { type ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
 
-type Props = ComponentPropsWithRef<"button"> & {
+type Props = ComponentPropsWithoutRef<"button"> & {
   variant?: "primary" | "secondary";
 };
 
@@ -10,10 +10,7 @@ let styles = {
   secondary: "text-indigo-500 hover:text-indigo-700 hover:bg-gray-50 focus-visible:text-indigo-600",
 };
 
-export default forwardRef<HTMLButtonElement, Props>(function Button(
-  { variant = "primary", type = "button", className, ...props }: Props,
-  ref: Ref<HTMLButtonElement>
-) {
+export default function Button({ variant = "primary", type = "button", className, ...props }: Props) {
   return (
     <button
       className={clsx(
@@ -23,7 +20,6 @@ export default forwardRef<HTMLButtonElement, Props>(function Button(
       )}
       type={type}
       {...props}
-      ref={ref}
     />
   );
-});
+}
