@@ -7,7 +7,7 @@ type Props = ComponentPropsWithoutRef<"button"> & {
 
 let styles = {
   primary: "bg-indigo-500 text-white hover:bg-indigo-600 focus-visible:bg-indigo-600",
-  secondary: "text-indigo-500 hover:text-indigo-700 hover:bg-gray-50 focus-visible:text-indigo-600",
+  secondary: "text-indigo-500 hover:text-indigo-700 focus-visible:text-indigo-600",
 };
 
 export default function Button({ variant = "primary", type = "button", className, ...props }: Props) {
