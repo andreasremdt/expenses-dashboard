@@ -18,7 +18,7 @@ export default function Checkbox({ className, indeterminate, ...props }: Props) 
       <input className="sr-only peer" {...props} type="checkbox" ref={ref} />
       <span
         aria-hidden="true"
-        className="block w-4 h-4 rounded-sm border border-gray-300 peer-checked:bg-indigo-600 peer-checked:border-indigo-600 peer-indeterminate:bg-indigo-600 peer-indeterminate:border-indigo-600 peer-checked:bg-checked peer-indeterminate:bg-indeterminate peer-focus:outline peer-focus:outline-2 peer-focus:outline-indigo-600 peer-focus:outline-offset-2"
+        className="block w-4 h-4 rounded-sm border border-gray-300 peer-checked:bg-gray-800 peer-checked:border-gray-800 peer-indeterminate:bg-gray-800 peer-indeterminate:border-gray-800 peer-checked:bg-checked peer-indeterminate:bg-indeterminate peer-focus:outline peer-focus:outline-2 peer-focus:outline-gray-800 peer-focus:outline-offset-2"
       />
     </label>
   );

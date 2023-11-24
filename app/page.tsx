@@ -15,8 +15,9 @@ export default function Page() {
   return (
     <>
       <Table title="My Expenses" expenses={expenses}>
-        <Button onClick={() => setOpen(true)}>Add expense</Button>
+        <Button onClick={() => setOpen(true)}>Add Expense</Button>
       </Table>
+
       <Dialog open={open} onClose={() => setOpen(false)} title="Add Expense">
         <InputGroup>
           <Label htmlFor="title">Title</Label>
