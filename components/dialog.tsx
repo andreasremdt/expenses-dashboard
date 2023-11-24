@@ -41,7 +41,7 @@ export default function Dialog({ open, onClose, title, children }: Props) {
 
         <div className="px-8">{children}</div>
 
-        <footer className="bg-gray-50 px-8 py-6 flex gap-x-2 justify-end">
+        <footer className="bg-gray-50 px-8 py-6 flex gap-x-2 justify-end mt-8">
           <Button variant="secondary" formNoValidate formMethod="dialog">
             Cancel
           </Button>
