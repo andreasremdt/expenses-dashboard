@@ -5,8 +5,9 @@ import clsx from "clsx";
 import { filterExpenses, formatCurrency, formatDate, groupExpenses } from "@/lib/utils";
 import Button from "@/components/button";
 import Checkbox from "@/components/checkbox";
+import Badge from "@/components/badge";
+import Input from "@/components/input";
 import type { Expense } from "@/types";
-import Badge from "./badge";
 
 type Props = {
   title?: string;
@@ -38,11 +39,10 @@ export default function Table({ expenses, title, children }: Props) {
     <div>
       <header className="flex items-center justify-between mb-6">
         {title && <h2 className="text-3xl text-gray-900 font-bold">{title}</h2>}
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-2">
           <form>
-            <input
+            <Input
               type="search"
-              className="border border-gray-300 rounded-sm px-2 py-1 outline-none"
               placeholder="Filter data..."
               value={filter}
               onChange={(event) => setFilter(event.currentTarget.value)}
@@ -88,37 +88,49 @@ export default function Table({ expenses, title, children }: Props) {
                   {formatDate(date)}
                 </td>
               </tr>
-              {expenses.map((expense) => (
-                <tr
-                  key={expense.id}
-                  className={clsx("border-l-2", {
-                    "bg-gray-50 border-l-indigo-600": selected.includes(expense.id),
-                    "border-l-transparent": !selected.includes(expense.id),
-                  })}
-                >
-                  <td className="border-b border-gray-200 py-2 px-4">
-                    <Checkbox
-                      onChange={() => handleSingleSelection(expense.id)}
-                      checked={selected.includes(expense.id)}
-                    />
-                  </td>
-                  <td className="border-b border-gray-200 py-2 px-4 font-medium text-gray-900">{expense.title}</td>
-                  <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{formatDate(expense.created)}</td>
-                  <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{formatCurrency(expense.value)} </td>
-                  <td className="border-b border-gray-200 py-2 px-4">
-                    <Badge type={expense.value < 0 ? "expense" : "income"}>
-                      {expense.value < 0 ? "Expense" : "Income"}
-                    </Badge>
-                  </td>
-                  <td className="border-b border-gray-200 py-2 px-4 text-gray-500">{expense.category}</td>
-                  <td className="border-b border-gray-200 py-2 px-4 text-gray-500">
-                    <Button variant="secondary" className="mr-2">
-                      Edit
-                    </Button>
-                    <Button variant="secondary">Delete</Button>
-                  </td>
-                </tr>
-              ))}
+              {expenses.map((expense) => {
+                let isSelected = selected.includes(expense.id);
+
+                return (
+                  <tr
+                    key={expense.id}
+                    className={clsx("border-l-2", {
+                      "bg-gray-50 border-l-indigo-600": isSelected,
+                      "border-l-transparent": !isSelected,
+                    })}
+                  >
+                    <td className="border-b border-gray-200 py-3 px-4">
+                      <Checkbox onChange={() => handleSingleSelection(expense.id)} checked={isSelected} />
+                    </td>
+                    <td
+                      className={clsx("border-b border-gray-200 py-3 px-4 font-medium", {
+                        "text-gray-900": !isSelected,
+                        "text-indigo-600": isSelected,
+                      })}
+                    >
+                      {expense.title}
+                    </td>
+                    <td className="border-b border-gray-200 py-3 px-4 text-gray-500">{formatDate(expense.created)}</td>
+                    <td className="border-b border-gray-200 py-3 px-4 text-gray-500">
+                      {formatCurrency(expense.value)}{" "}
+                    </td>
+                    <td className="border-b border-gray-200 py-3 px-4">
+                      <Badge type={expense.value < 0 ? "expense" : "income"}>
+                        {expense.value < 0 ? "Expense" : "Income"}
+                      </Badge>
+                    </td>
+                    <td className="border-b border-gray-200 py-3 px-4 text-gray-500">{expense.category}</td>
+                    <td className="border-b border-gray-200 py-3 px-4 text-gray-500">
+                      <Button variant="text" className="mr-2" type="button">
+                        Edit
+                      </Button>
+                      <Button variant="text" type="button">
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
             </Fragment>
           ))}
         </tbody>

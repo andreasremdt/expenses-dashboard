@@ -1,6 +1,6 @@
-import { useRef, type ComponentPropsWithoutRef, useEffect } from "react";
+import { useRef, type InputHTMLAttributes, useEffect } from "react";
 
-type Props = ComponentPropsWithoutRef<"input"> & {
+type Props = InputHTMLAttributes<HTMLInputElement> & {
   indeterminate?: boolean;
 };
 

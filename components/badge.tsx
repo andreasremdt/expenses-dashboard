@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
 
-type Props = ComponentPropsWithoutRef<"span"> & {
+type Props = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
   type?: "expense" | "income";
 };
