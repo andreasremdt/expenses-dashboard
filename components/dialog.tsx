@@ -23,7 +23,7 @@ export default function Dialog({ open, onClose, title, children }: Props) {
         <header className="flex items-center justify-between px-8 py-6">
           {title && <h2 className="font-bold text-gray-900 text-lg">{title}</h2>}
 
-          <Button aria-label="close dialog" formMethod="dialog" variant="text">
+          <Button aria-label="close dialog" formMethod="dialog" formNoValidate variant="text">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -42,7 +42,9 @@ export default function Dialog({ open, onClose, title, children }: Props) {
         <div className="px-8">{children}</div>
 
         <footer className="bg-gray-50 px-8 py-6 flex gap-x-2 justify-end">
-          <Button variant="secondary">Cancel</Button>
+          <Button variant="secondary" formNoValidate formMethod="dialog">
+            Cancel
+          </Button>
           <Button>Add</Button>
         </footer>
       </form>

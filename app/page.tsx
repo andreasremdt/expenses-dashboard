@@ -8,6 +8,7 @@ import Input from "@/components/input";
 import Label from "@/components/label";
 import InputGroup from "@/components/input-group";
 import expenses from "@/data.json";
+import RadioButton from "@/components/radio-button";
 
 export default function Page() {
   const [open, setOpen] = useState(false);
@@ -43,15 +44,13 @@ export default function Page() {
           <Label htmlFor="category">Category</Label>
           <Input type="text" id="category" name="category" />
         </InputGroup>
-        <div>
-          <Label>
-            <input type="radio" name="type" value="expense" defaultChecked />
+        <div className="flex gap-x-2">
+          <RadioButton name="type" value="expense" className="w-1/2" defaultChecked>
             Expense
-          </Label>
-          <Label>
-            <input type="radio" name="type" value="income" />
+          </RadioButton>
+          <RadioButton name="type" value="income" className="w-1/2">
             Income
-          </Label>
+          </RadioButton>
         </div>
       </Dialog>
     </>
